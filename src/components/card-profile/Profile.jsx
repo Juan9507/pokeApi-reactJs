@@ -41,7 +41,7 @@ const Profile = () => {
           <Row className="justify-content-center mt-5">
             <Col md="auto" style={{ width: "400px" }}>
               <Card className="shadow p-3 mb-5 bg-white">
-                <Card.Img variant="top" src={profile.sprites.back_default} />
+                <Card.Img variant="top" src={profile.sprites.front_default} />
                 <Card.Body>
                   <Card.Title style={{ textAlign: "center" }}>
                     {profile.name}
@@ -65,7 +65,7 @@ const Profile = () => {
         ) : null}
         <Row className="justify-content-center mb-4">
           <Col sm={4} className="d-grid gap-2">
-            <Button variant="primary" size="lg" onClick={() => navigate("/")}>
+            <Button variant="primary" size="lg" onClick={() => navigate("/home")}>
               {" "}
               Regresar a la lista
             </Button>

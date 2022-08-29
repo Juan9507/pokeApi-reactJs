@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Container, Col, Row, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Nav from '../navbar/Nav'
+import Nav from "../navbar/Nav";
 import Search from "../search/Search";
 
 const Home = () => {
-
   /** Estado para almacenar los pokemones de la api rest */
   const [listPokeApi, setListPokeApi] = useState([]);
   const [listPokeApiBackup, setListApiBackup] = useState([]);
@@ -46,28 +45,26 @@ const Home = () => {
       const itemData = item.name;
       const textData = text;
       return itemData.indexOf(textData) > -1;
-    })
+    });
     setListPokeApi(newData);
-    setTextBuscar(text)
-  }
+    setTextBuscar(text);
+  };
 
   return (
     <>
       <Nav></Nav>
       <Container>
-        <Search handleSearch={handleSearch} textBuscar={textBuscar}/>
+        <Search handleSearch={handleSearch} textBuscar={textBuscar} />
         <Row>
           {listPokeApi.length > 0
             ? listPokeApi.map((pokemones, index) => {
                 return (
-                  <Col sm={4} className="mt-5" key={index}>
-                    <Card
-                      className="shadow p-3 mb-5 bg-white"
-                    >
+                  <Col sm={3} className="mt-5" key={pokemones.id}>
+                    <Card className="shadow p-3 mb-5 bg-white" >
                       <Link to={`/profile/${pokemones.id}`}>
                         <Card.Img
                           variant="top"
-                          src={pokemones.sprites.back_default}
+                          src={pokemones.sprites.front_default}
                         />
                         <Card.Body>
                           <Card.Title style={{ textAlign: "center" }}>
@@ -79,6 +76,7 @@ const Home = () => {
                               return (
                                 <>
                                   <Col
+                                    key={type.slot}
                                     md="auto"
                                     sm={pokemones.types.length > 1 ? 6 : 12}
                                   >

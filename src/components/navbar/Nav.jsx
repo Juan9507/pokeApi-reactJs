@@ -1,7 +1,13 @@
 import React from "react";
-import { Container, Navbar } from "react-bootstrap";
+import { Button, Container, Navbar } from "react-bootstrap";
+import fire from "../../config/Fire";
 
 function Nav() {
+
+  function logout(){
+    fire.auth().signOut();
+  }
+
   return (
     <>
     <Navbar bg="light" variant="light" className="shadow-sm p-3 mb-5 bg-white rounded">
@@ -18,6 +24,9 @@ function Nav() {
           </Navbar.Brand>
         <Navbar.Brand>
             edward
+        </Navbar.Brand>
+        <Navbar.Brand>
+            <Button variant="primary" onClick={() => logout}>Cerrar sesion</Button>
         </Navbar.Brand>
         </Container>
        
