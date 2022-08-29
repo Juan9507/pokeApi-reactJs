@@ -40,7 +40,7 @@ function App() {
   if(user != null) {
     setTimeout(() => {
       return navigate('/home')
-    }, 1000);
+    }, 500);
   }
   
 }
