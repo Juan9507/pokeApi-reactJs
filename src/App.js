@@ -37,11 +37,7 @@ function App() {
 
   if(authState === null) return <div>loading...</div>
   if(authState === "login") return <Login/>
-  if(user != null) {
-    setTimeout(() => {
-      return navigate('/home')
-    }, 500);
-  }
+  if(user != null) return navigate('/home')
   
 }
 

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 function Nav() {
 
   const navigate = useNavigate();
+  const email = localStorage.getItem('email');
 
   const signOutHandler = () => {
     signOut(auth)
@@ -35,7 +36,7 @@ function Nav() {
             />{" "}
             Pokemon List
           </Navbar.Brand>
-          <Navbar.Brand>edward</Navbar.Brand>
+          <Navbar.Brand>{ email ? email : "poke" }</Navbar.Brand>
           <Navbar.Brand>
             <Button varian="primary" onClick={signOutHandler}>Sign out</Button>
           </Navbar.Brand>

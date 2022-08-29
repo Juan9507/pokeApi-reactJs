@@ -22,7 +22,7 @@ root.render(
   //<React.StrictMode>
     <Router history = {history}>
       <Routes>
-        <Route path="/" element={ <App /> } />
+        <Route path="/" element={ <App/>} />
         <Route path="/home" element={ unSubcribe() ? <Home /> : <Navigate to="/" />} />
         <Route path="/profile/:id" element={ unSubcribe() ? <Profile/> : <Navigate to="/" />} />
       </Routes>
