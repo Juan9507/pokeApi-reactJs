@@ -1,7 +1,8 @@
-import { async } from "@firebase/util";
 import React, { useState } from "react";
 import { Container, Button, Form, Card, Row, Col } from "react-bootstrap";
-import fire from "../../config/Fire";
+import { auth } from "../../config/fire";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 function Login(props) {
   const [login, setLogin] = useState({
@@ -18,28 +19,39 @@ function Login(props) {
 
   //Iniciar sesion
   async function handleSubmit(e) {
+    console.log("login");
     e.preventDefault();
-    e.target.reset();
-    fire
-      .auth()
-      .signInWithEmailAndPassword(login.email, login.password)
-      .then((u) => {})
-      .catch((error) => {
-        console.log(error);
-      });
+    if (login.email !== "" && login.password != "") {
+      signInWithEmailAndPassword(auth, login.email, login.password)
+        .then((user) => {
+          localStorage.setItem("email", user.user.email);
+          alert("login exitoso");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }else{
+      alert("Los campos tienen que ser llenados")
+    }
   }
 
   //Registrarse
-  async function signup(e){
+  async function signup(e) {
+    console.log("entra");
     e.preventDefault();
-    e.target.reset();
-    fire
-      .auth()
-      .createUserWithEmailAndPassword(login.email, login.password)
-      .then((u) => {})
+    if (login.email !== "" && login.password != "") {
+      createUserWithEmailAndPassword(auth, login.email, login.password)
+      .then((user) => {
+        localStorage.setItem("email", user.user.email);
+        alert("Su registro fue exitoso");
+      })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
+    }else{
+      alert("Los campos tienen que ser llenados")
+    }
+    
   }
 
   return (
@@ -61,6 +73,7 @@ function Login(props) {
                     <Form.Label>Email address</Form.Label>
                     <Col sm="12">
                       <Form.Control
+                        value={login.email}
                         type="email"
                         name="email"
                         onChange={handleChange}
@@ -76,6 +89,7 @@ function Login(props) {
                     <Form.Label>Password</Form.Label>
                     <Col sm="12">
                       <Form.Control
+                        value={login.password}
                         type="password"
                         name="password"
                         onChange={handleChange}
@@ -84,16 +98,22 @@ function Login(props) {
                       />
                     </Col>
                   </Form.Group>
-                  <Col sm={6}>
-                    <Button variant="primary" type="submit" onClick={() => handleSubmit}>
+                  <Row className="mt-3 justify-content-center">
+                    <Col sm={2}>
+                      <Button
+                        variant="primary"
+                        type="submit"
+                        onClick={handleSubmit}
+                      >
                         Login
-                    </Button>
-                  </Col>
-                  <Col sm={6}>
-                    <Button variant="primary" onClick={() => signup}>
+                      </Button>
+                    </Col>
+                    <Col sm={2}>
+                      <Button variant="primary" onClick={signup}>
                         Sign up
-                    </Button>
-                  </Col>
+                      </Button>
+                    </Col>
+                  </Row>
                 </Form>
               </Card.Body>
             </Card>

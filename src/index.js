@@ -5,8 +5,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { createBrowserHistory } from 'history';
-import Profile from './components/card-profile/Profile'
-import Home from './components/home/Home'
+import Profile from './pages/card-profile/Profile'
+import Home from './pages/home/Home'
 
 const history = createBrowserHistory();
 const root = ReactDOM.createRoot(document.getElementById("root"));

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Col, Row, Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import Nav from '../navbar/Nav'
+import Nav from '../../components/navbar/Nav'
 
 const Profile = () => {
   const { id } = useParams();

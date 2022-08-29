@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Container, Col, Row, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Nav from "../navbar/Nav";
-import Search from "../search/Search";
+import Nav from "../../components/navbar/Nav";
+import Search from "../../components/search/Search";
 
 const Home = () => {
   /** Estado para almacenar los pokemones de la api rest */
