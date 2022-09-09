@@ -12,7 +12,7 @@ function Nav() {
   const signOutHandler = () => {
     signOut(auth)
     .then(() => {
-      localStorage.clear();
+      //localStorage.clear();
       navigate('/')
     })
     .catch((error) => console.error(error))

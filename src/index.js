@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-d
 import { createBrowserHistory } from 'history';
 import Profile from './pages/card-profile/Profile'
 import Home from './pages/home/Home'
+import PokemonFavorite from "./pages/pokemon_favorite/PokemonFavorite";
 
 const unSubcribe = () => {
   const email = localStorage.getItem('email');
@@ -19,15 +20,16 @@ const unSubcribe = () => {
 const history = createBrowserHistory();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  //<React.StrictMode>
+  // <React.StrictMode>
     <Router history = {history}>
       <Routes>
         <Route path="/" element={ <App/>} />
-        <Route path="/home" element={ unSubcribe() ? <Home /> : <Navigate to="/" />} />
-        <Route path="/profile/:id" element={ unSubcribe() ? <Profile/> : <Navigate to="/" />} />
+        <Route path="/home" element={ localStorage.getItem('email') != "" && unSubcribe() ? <Home /> : <Navigate to="/" />} />
+        <Route path="/profile/:id" element={ localStorage.getItem('email') != "" && unSubcribe() ? <Profile/> : <Navigate to="/" />} />
+        <Route path="/favorite" element={ localStorage.getItem('email') != "" && unSubcribe() ? <PokemonFavorite/> : <Navigate to="/" />} />
       </Routes>
     </Router>
-  //</React.StrictMode>
+  // </React.StrictMode>
 );
 
 reportWebVitals();

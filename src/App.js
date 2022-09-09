@@ -1,4 +1,4 @@
-// css del componente
+// componentes y css
 import "./App.css";
 // Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -11,10 +11,8 @@ import { useEffect, useState } from "react";
 //auth
 import { auth } from "./config/fire";
 import { onAuthStateChanged } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 
 function App() {
-  const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [authState, setAuthState] = useState(null);
 
@@ -35,10 +33,9 @@ function App() {
     return unSubcribeAuth;
   }, [user]);
 
-  if(authState === null) return <div>loading...</div>
-  if(authState === "login") return <Login/>
-  if(user != null) return navigate('/home')
-  
+  if (authState === null) return <div>loading...</div>;
+  if (authState === "login") return <Login />;
+  if (user != null) return window.location.href = "/home";
 }
 
 export default App;

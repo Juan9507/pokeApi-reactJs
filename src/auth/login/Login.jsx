@@ -21,7 +21,7 @@ function Login(props) {
   async function handleSubmit(e) {
     console.log("login");
     e.preventDefault();
-    if (login.email !== "" && login.password != "") {
+    if (login.email != "" && login.password != "") {
       signInWithEmailAndPassword(auth, login.email, login.password)
         .then((user) => {
           localStorage.setItem("email", user.user.email);
@@ -39,7 +39,7 @@ function Login(props) {
   async function signup(e) {
     console.log("entra");
     e.preventDefault();
-    if (login.email !== "" && login.password != "") {
+    if (login.email != "" && login.password != "") {
       createUserWithEmailAndPassword(auth, login.email, login.password)
       .then((user) => {
         localStorage.setItem("email", user.user.email);
